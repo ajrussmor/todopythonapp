@@ -1,0 +1,32 @@
+{% extends 'todo/base.html'%}
+
+{% block content %}
+
+{{error}}
+<br>
+
+<br>
+{{todoretrieved.title}}
+
+<form method="POST">
+    {% csrf_token %}
+{{form.as_p}}
+<button type="submit">Save</button>
+
+</form>
+
+<br>
+
+<form method="POST" action="{% url 'completetodo' todoretrieved.id%}">
+    {% csrf_token %}
+<button type="submit">Complete</button>
+
+</form>
+
+<form method="POST" action="{% url 'deletetodo' todoretrieved.id%}">
+    {% csrf_token %}
+<button type="submit">Delete</button>
+
+</form>
+
+{% endblock %}
